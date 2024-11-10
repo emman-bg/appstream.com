@@ -98,7 +98,7 @@
     </div>
 </template>
 <script>
-    import axios from 'axios'
+    import api from '../services/api.js';
 
     export default {
         data: () => ({
@@ -121,7 +121,7 @@
         methods: {
             async login () {
                 try {
-                const response = await axios.post('http://localhost:8000/login/', {
+                const response = await api.post('/login/', {
                     email: this.email,
                     password: this.password
                 })
