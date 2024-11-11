@@ -55,9 +55,6 @@ export default defineComponent({
 
     data() {
         return {
-            userProfile: {
-                username: 'brownie05'
-            },
             search: ''
         }
     },

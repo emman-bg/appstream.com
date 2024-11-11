@@ -79,7 +79,7 @@
             size="large"
             variant="tonal"
             block
-            @click="login"
+            @click="performLogin"
         >
             Log In
         </v-btn>
@@ -98,7 +98,8 @@
     </div>
 </template>
 <script>
-    import api from '../services/api.js';
+import { mapActions } from 'vuex';
+
 
     export default {
         data: () => ({
@@ -119,15 +120,14 @@
         },
 
         methods: {
-            async login () {
+            ...mapActions(['login']),
+
+            async performLogin() {
                 try {
-                const response = await api.post('/login/', {
-                    email: this.email,
-                    password: this.password
-                })
-                localStorage.setItem('access_token', response.data.access)
-                this.$router.push({name: 'home'})
+                    await this.login({ email: this.email, password: this.password });
+                    this.$router.push({name: 'home'});
                 } catch(error) {
+                    console.log(error)
                     this.errorMessage = 'Invalid email or password'
                     console.error('Login error:', error)
                     this.errorMessage = 'Invalid email or password.';

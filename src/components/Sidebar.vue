@@ -19,19 +19,15 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { mapState } from 'vuex';
 
 export default defineComponent({
     name: 'Sidebar',
 
-    data() {
-        return {
-            userProfile: {
-                username: 'brownie05'
-            },
-        }
-    },
+    data() {},
 
-    components: {
+    computed: {
+        ...mapState(['userProfile'])
     },
 });
 </script>
