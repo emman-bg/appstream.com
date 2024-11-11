@@ -1,9 +1,7 @@
 <template>
     <v-navigation-drawer
-        class="bg-teal-darken-1"
+        class="bg-deep-purple"
         theme="dark"
-        expand-on-hover
-        rail
     >
         <v-list-item
             prepend-icon="mdi-account-circle-outline"

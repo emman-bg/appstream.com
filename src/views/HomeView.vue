@@ -22,39 +22,24 @@
             <div class="title text-left text-h4">
                 Latest from your subscriptions
             </div>
-            <v-row
-                align="center"
-                style="height: 150px;"
-                justify="space-between"
-            >
-                <v-col cols="3">
-                    <v-card elevation="8">
-                        <v-img src="../../public/images/travel.png" alt="thumbnail" />
-                    </v-card>
-                    <div class="info">
-                        <p class="vid-title text-h6 text-truncate">I went to Africa!</p>
-                        <p class="content-creator">Mr. Beast</p>
-                    </div>
-                </v-col>
-                <v-col cols="3">
-                    <v-card
-                        title="I went to Africa!"
-                        subtitle="Mr. Beast"
-                        elevation="8"
-                    >
-                        <v-img src="../../public/images/travel.png" alt="thumbnail" />
-                    </v-card>
-                </v-col>
-                <v-col cols="3">
-                    <v-card
-                        title="I went to Africa!"
-                        subtitle="Mr. Beast"
-                        elevation="8"
-                    >
-                        <v-img src="../../public/images/travel.png" alt="thumbnail" />
-                    </v-card>
-                </v-col>
-            </v-row>
+            <div class="content-list">
+                <div class="content" v-for="i in 6">
+                    <v-col class="content-element" cols="9" @click="openContent">
+                        <v-card elevation="8">
+                            <v-img src="../../public/images/travel.png" alt="thumbnail" />
+                        </v-card>
+                        <div class="info">
+                            <p class="vid-title text-h6 text-truncate">I went to Africa!</p>
+                            <p class="content-creator">Mr. Beast</p>
+                        </div>
+                    </v-col>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="pagination">
+                <v-pagination :length="12"></v-pagination>
+            </div>
         </div>
     </v-app>
 </template>
@@ -81,6 +66,12 @@ export default defineComponent({
     components: {
         Sidebar
     },
+
+    methods: {
+        openContent() {
+            window.open('https://google.com', '_blank')
+        }
+    }
 });
 </script>
 <style scoped>
@@ -100,18 +91,37 @@ export default defineComponent({
             margin: 32px;
         }
 
+        .content-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+
+            .content-element {
+                cursor: pointer;
+            }
+        }
+
         .info {
             display: grid;
 
             .vid-title {
-                margin: 12px;
+                margin: 12px 12px 0px 0px;
             }
 
             .content-creator {
-                margin: 12px;
+                margin: 0px 12px 12px 0px;
                 color: grey;
             }
         }
+    }
 
+    .footer {
+        .pagination {
+            margin-inline: calc(100% - 60vw);
+        }
     }
 </style>
