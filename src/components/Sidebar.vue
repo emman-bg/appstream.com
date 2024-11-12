@@ -5,21 +5,21 @@
     >
         <v-list-item
             prepend-icon="mdi-account-circle-outline"
-            :title="`Welcome, ${userProfile.username}!`"
+            :title="usernameDisplay"
         >
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item prepend-icon="mdi-home" link title="Home"></v-list-item>
         <v-list-item prepend-icon="mdi-television-play" link title="My Channel"></v-list-item>
         <template v-slot:append>
-            <v-list-item prepend-icon="mdi-logout" link title="Logout"></v-list-item>
+            <v-list-item prepend-icon="mdi-logout" link title="Logout" @click="performLogout"></v-list-item>
         </template>
     </v-navigation-drawer>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import { mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default defineComponent({
     name: 'Sidebar',
@@ -27,7 +27,19 @@ export default defineComponent({
     data() {},
 
     computed: {
-        ...mapState(['userProfile'])
+        ...mapState(['username']),
+        ...mapActions(['logout']),
+
+        usernameDisplay() {
+            return this.username ? `Welcome, ${this.username}!` : 'Welcome!';
+        }
     },
+
+    methods: {
+        performLogout() {
+            this.logout;
+            this.$router.push({name: 'login'})
+        }
+    }
 });
 </script>
