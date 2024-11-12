@@ -38,6 +38,7 @@
             placeholder="Email address"
             prepend-inner-icon="mdi-email-outline"
             variant="outlined"
+            @keydown.enter="performLogin"
         ></v-text-field>
 
         <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
@@ -61,6 +62,7 @@
             prepend-inner-icon="mdi-lock-outline"
             variant="outlined"
             @click:append-inner="visible = !visible"
+            @keydown.enter="performLogin"
         ></v-text-field>
 
         <v-card
@@ -127,9 +129,6 @@ import { mapActions } from 'vuex';
                     await this.login({ email: this.email, password: this.password });
                     this.$router.push({name: 'home'});
                 } catch(error) {
-                    console.log(error)
-                    this.errorMessage = 'Invalid email or password'
-                    console.error('Login error:', error)
                     this.errorMessage = 'Invalid email or password.';
                 }
             },
