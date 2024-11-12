@@ -2,20 +2,17 @@
     <Sidebar />
     <v-app>
         <div class="header">
-            <v-text-field
-                v-model="search"
-                label="Search"
-                prepend-inner-icon="mdi-magnify"
-                variant="outlined"
-                hide-details
-                single-line
-                max-width="512"
-            ></v-text-field>
+            <div class="searchbar">
+                <i class="mdi mdi-magnify icon"></i>
+                <span>
+                    <input class="input-field" type="text" placeholder="Search"></input>
+                </span>
+            </div>
             <v-img
                 src="../../public/stream.svg"
                 alt="AppStream logo"
-                max-width="56"
-                max-height="56"
+                max-width="42"
+                max-height="42"
             ></v-img>
         </div>
         <div class="body">
@@ -59,7 +56,6 @@ export default defineComponent({
         }
     },
 
-
     components: {
         Sidebar
     },
@@ -76,6 +72,35 @@ export default defineComponent({
         display: flex;
         justify-content: space-between;
         margin: 32px;
+
+        .searchbar {
+            min-width: 420px;
+            max-height: 42px;
+
+            input {
+                height: 100%;
+                width: 100%;
+                border: 1px solid lightgrey;
+                border-radius: 4px;
+                text-indent: 28px;
+            }
+
+            i {
+                position: absolute;
+                height: inherit;
+            }
+
+            .icon {
+                padding: 10px;
+                height: 42px;
+            }
+
+            .input-field {
+                width: 100%;
+                padding: 10px;
+                text-align: start;
+            }
+        }
     }
 
     .body {
