@@ -4,14 +4,20 @@ import api from '../services/api.js';
 
 export default createStore({
     state: {
-        userProfile: null
+        username: JSON.parse(localStorage.getItem('username')) || null,
     },
     getters: {
-        isAuthenticated: state => !!state.userProfile
+        isAuthenticated: state => !!state.username
     },
     mutations: {
-        setUserProfile(state, userProfile) {
-            state.userProfile = userProfile;
+        setUsername(state, username) {
+            state.username = username;
+            localStorage.setItem('username', JSON.stringify(username));
+        },
+
+        logout(state) {
+            state.username = null;
+            localStorage.clear();
         }
     },
     actions: {
@@ -21,8 +27,11 @@ export default createStore({
                 password: credentials.password
             })
             localStorage.setItem('access_token', response.data.access)
-            console.log(response, response.data)
-            commit('setUserProfile', response.data.user_profile);
+            commit('setUsername', response.data.username);
+        },
+
+        logout({commit}) {
+            commit('logout');
         }
     },
     modules: {
