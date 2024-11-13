@@ -28,7 +28,6 @@ export default defineComponent({
 
     computed: {
         ...mapState(['username']),
-        ...mapActions(['logout']),
 
         usernameDisplay() {
             return this.username ? `Welcome, ${this.username}!` : 'Welcome!';
@@ -36,8 +35,10 @@ export default defineComponent({
     },
 
     methods: {
+        ...mapActions(['logout']),
+
         performLogout() {
-            this.logout;
+            this.logout();
             this.$router.push({name: 'login'})
         }
     }
