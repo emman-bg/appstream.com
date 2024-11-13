@@ -89,7 +89,7 @@
         <v-card-text class="text-center">
             <a
                 class="text-blue text-decoration-none"
-                href="#"
+                href="/signup"
                 rel="noopener noreferrer"
                 target="_blank"
             >
@@ -100,40 +100,43 @@
     </div>
 </template>
 <script>
+import { defineComponent } from 'vue';
 import { mapActions } from 'vuex';
 
 
-    export default {
-        data: () => ({
-            visible: false,
-            email: null,
-            password: null,
-            errorMessage: ''
-        }),
+export default defineComponent({
+    name: 'Login',
 
-        watch: {
-            errorMessage() {
-                if (this.errorMessage) {
-                    setTimeout(() => {
-                        this.errorMessage = '';
-                    }, 5000);
-                }
+    data: () => ({
+        visible: false,
+        email: null,
+        password: null,
+        errorMessage: ''
+    }),
+
+    watch: {
+        errorMessage() {
+            if (this.errorMessage) {
+                setTimeout(() => {
+                    this.errorMessage = '';
+                }, 5000);
+            }
+        }
+    },
+
+    methods: {
+        ...mapActions(['login']),
+
+        async performLogin() {
+            try {
+                await this.login({ email: this.email, password: this.password });
+                this.$router.push({name: 'home'});
+            } catch(error) {
+                this.errorMessage = 'Invalid email or password.';
             }
         },
-
-        methods: {
-            ...mapActions(['login']),
-
-            async performLogin() {
-                try {
-                    await this.login({ email: this.email, password: this.password });
-                    this.$router.push({name: 'home'});
-                } catch(error) {
-                    this.errorMessage = 'Invalid email or password.';
-                }
-            },
-        }
     }
+});
 
 </script>
 <style scoped>
