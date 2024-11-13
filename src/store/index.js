@@ -26,7 +26,7 @@ export default createStore({
                 email: credentials.email,
                 password: credentials.password
             })
-            localStorage.setItem('access_token', response.data.access)
+            localStorage.setItem('access_token', response.data.access);
             commit('setUsername', response.data.username);
         },
 
