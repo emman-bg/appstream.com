@@ -20,10 +20,11 @@
             </template>
         </v-banner>
         <v-img
-            class="mx-auto my-6"
-            max-width="128"
+            class="mx-auto mt-4"
+            max-width="84"
             src="../assets/stream.svg"
         ></v-img>
+        <p class="mx-auto text-center mb-5 app-name">APPSTREAM</p>
         <v-card
             class="mx-auto pa-12 pb-8"
             elevation="8"
@@ -34,6 +35,7 @@
 
         <v-text-field
             v-model="email"
+            tabindex="1"
             density="compact"
             placeholder="Email address"
             prepend-inner-icon="mdi-email-outline"
@@ -45,7 +47,7 @@
             Password
 
             <a
-                class="text-caption text-decoration-none text-blue"
+                class="text-caption text-decoration-none text-deep-purple"
                 href="#"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -57,6 +59,7 @@
             v-model="password"
             :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
             :type="visible ? 'text' : 'password'"
+            tabindex="2"
             density="compact"
             placeholder="Enter your password"
             prepend-inner-icon="mdi-lock-outline"
@@ -77,7 +80,7 @@
 
         <v-btn
             class="mb-8"
-            color="blue"
+            color="deep-purple"
             size="large"
             variant="tonal"
             block
@@ -88,7 +91,7 @@
 
         <v-card-text class="text-center">
             <a
-                class="text-blue text-decoration-none"
+                class="text-deep-purple text-decoration-none"
                 href="/signup"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -137,7 +140,11 @@ export default defineComponent({
         },
     }
 });
-
 </script>
 <style scoped>
+    .app-name {
+        font-weight: bold;
+        letter-spacing: 0.8rem;
+        font-size: 1.5rem;
+    }
 </style>

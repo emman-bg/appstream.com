@@ -32,14 +32,16 @@
                     <span>
                         <v-btn
                             text="Back to login"
-                            class="my-5 bg-white"
+                            class="my-5 bg-white text-deep-purple"
                             elevation="0"
                             rounded="pill"
                             @click="loginRedirect"
                         ></v-btn>
                         <v-btn
                             text="Next"
-                            class="ml-2 mr-5 my-5 bg-deep-purple"
+                            class="ml-2 mr-5 my-5"
+                            color="deep-purple"
+                            variant="tonal"
                             elevation="0"
                             rounded="pill"
                             @click="nextStep"
@@ -61,12 +63,14 @@
                     <v-card-subtitle>Now your password</v-card-subtitle>
                 </div>
                 <div class="content-right">
-                    <input
-                        v-model="password"
-                        class="text-field"
-                        type="text"
-                        placeholder="Password"
-                    ></input>
+                    <span class="text-area">
+                        <input
+                            v-model="password"
+                            class="text-field"
+                            type="password"
+                            placeholder="Password"
+                        ></input>
+                    </span>
                     <span>
                         <v-btn
                             text="Back"
@@ -77,7 +81,9 @@
                         ></v-btn>
                         <v-btn
                             text="Create"
-                            class="ml-2 mr-5 my-5 bg-deep-purple"
+                            class="ml-2 mr-5 my-5"
+                            color="deep-purple"
+                            variant="tonal"
                             elevation="0"
                             rounded="pill"
                         ></v-btn>
