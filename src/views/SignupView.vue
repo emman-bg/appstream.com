@@ -28,6 +28,7 @@
                             type="text"
                             placeholder="Username"
                             tabindex="1"
+                            @keydown.enter="nextStep"
                         ></input>
                     </span>
                     <span>
@@ -73,6 +74,7 @@
                             type="text"
                             placeholder="Email"
                             tabindex="1"
+                            @keydown.enter="nextStep"
                         ></input>
                     </span>
                     <span>
@@ -117,6 +119,7 @@
                             type="password"
                             placeholder="Password"
                             tabindex="1"
+                            @keydown.enter="nextStep"
                         ></input>
                     </span>
                     <span>
@@ -135,6 +138,7 @@
                             elevation="0"
                             rounded="pill"
                             tabindex="2"
+                            @click="nextStep"
                         ></v-btn>
                     </span>
                 </div>
@@ -146,6 +150,7 @@
 <script>
 import { defineComponent } from 'vue';
 import FieldValidatorMixin from '@/mixins/FieldValidatorMixin';
+import { mapActions } from 'vuex';
 
 export default defineComponent({
     name: 'SignupView',
@@ -187,11 +192,13 @@ export default defineComponent({
     },
 
     methods: {
+        ...mapActions(['createAccount']),
+
         loginRedirect() {
             this.$router.push({name: 'login'});
         },
 
-        nextStep() {
+        async nextStep() {
             this.errorMessage = '';
 
             if (this.step === 1) {
@@ -216,7 +223,16 @@ export default defineComponent({
                 } else if (this.password.length < 8) {
                     this.errorMessage = 'Password is too short';
                 } else {
-                    console.log('create');
+                    try {
+                        await this.createAccount({
+                            email: this.email,
+                            username: this.username,
+                            password: this.password
+                        });
+                        this.$router.push({name: 'home'});
+                    } catch (error) {
+                        console.error(error);
+                    }
                 }
             }
         }

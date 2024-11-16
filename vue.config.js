@@ -1,11 +1,21 @@
 const { defineConfig } = require('@vue/cli-service')
-module.exports = defineConfig({
-  transpileDependencies: true,
-  lintOnSave: false,
+const webpack = require('webpack');
 
-  pluginOptions: {
-    vuetify: {
-			// https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
-		}
-  }
+module.exports = defineConfig({
+    transpileDependencies: true,
+    lintOnSave: false,
+
+    pluginOptions: {
+        vuetify: {
+            // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
+        }
+    },
+
+    configureWebpack: {
+        plugins: [
+            new webpack.DefinePlugin({
+                __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(false),
+            }),
+        ],
+    },
 })
