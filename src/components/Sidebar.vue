@@ -24,8 +24,6 @@ import { mapActions, mapState } from 'vuex';
 export default defineComponent({
     name: 'Sidebar',
 
-    data() {},
-
     computed: {
         ...mapState(['username']),
 
